@@ -1,1 +1,33 @@
+def f(x):
+    return x**2 - x - 5
 
+def biseccion(xi, xf, iteraciones):
+    # Verificamos si hay raíz en el intervalo inicial
+    if f(xi) * f(xf) >= 0:
+        print("El método de bisección no garantiza una raíz en este intervalo.")
+        return
+
+    # Encabezado de la tabla
+    print(f"{'i':<4} | {'Xi':<10} | {'Xf':<10} | {'Xm':<10} | {'f(Xm)':<12}")
+    print("-" * 55)
+
+    for i in range(iteraciones + 1):
+        xm = (xi + xf) / 2
+        f_xm = f(xm)
+        f_xi = f(xi)
+
+        # Imprimimos los valores formateados con 4 decimales para mayor claridad
+        print(f"{i:<4} | {xi:<10.4f} | {xf:<10.4f} | {xm:<10.4f} | {f_xm:<12.6f}")
+
+        # Lógica de actualización según el signo de f(Xi) * f(Xm)
+        if f_xi * f_xm < 0:
+            xf = xm
+        else:
+            xi = xm
+
+# Parámetros iniciales según tu ejercicio
+xi_inicial = -1.0
+xf_inicial = 4.0
+total_iteraciones = 11  # Del 0 al 11 como en tu tabla
+
+biseccion(xi_inicial, xf_inicial, total_iteraciones)
